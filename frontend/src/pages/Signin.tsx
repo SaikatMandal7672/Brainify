@@ -10,7 +10,7 @@ const Signin: React.FC = () => {
 
   const handleLogin = async (username: string, password: string) => {
     // login logic here
-
+    console.log(BACKEND_URL)
     const response = await axios.post(BACKEND_URL + "/api/v1/user/signin",
       { username, password }, {
       headers: {
@@ -21,8 +21,7 @@ const Signin: React.FC = () => {
     const jwt = response.data.token;
     localStorage.removeItem("token");
     localStorage.setItem("token", jwt);
-    console.log("Signing up with:", { username, password });
-    console.log("Logging in with:", username, password);
+
 
     navigate("/dashboard");
   };
