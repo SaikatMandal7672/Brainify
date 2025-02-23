@@ -1,7 +1,11 @@
 // middleware.ts
+import dotenv from "dotenv";
 import { Request, Response, NextFunction } from "express";
 import jwt from "jsonwebtoken";
-import { JWT_SECRET } from "./config";
+
+// Load environment variables
+dotenv.config();
+const JWT_SECRET = process.env.JWT_SECRET || "your-default secret";
 
 export const userMiddleware = (req: Request, res: Response, next: NextFunction): void => {
   const authHeader = req.header("Authorization");
@@ -10,9 +14,9 @@ export const userMiddleware = (req: Request, res: Response, next: NextFunction):
     return;
   }
 
-  
+
   try {
-    const decoded = jwt.verify(authHeader, JWT_SECRET) 
+    const decoded = jwt.verify(authHeader, JWT_SECRET)
     // @ts-ignore
     req.userId = decoded.userId; // Attach userId to the request
     next();
