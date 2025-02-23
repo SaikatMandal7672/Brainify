@@ -4,9 +4,10 @@ import jwt from "jsonwebtoken";
 import zod from "zod";
 import { Content, Link, User } from "./db";
 import { userMiddleware } from "./middleware";
-import { JWT_SECRET } from "./config";
+// import { JWT_SECRET } from "./config";
 import { random } from "./utils";
 
+const JWT_SECRET = process.env.JWT_SECRET || "your-default-secret";
 var app = express();
 app.use(express.json());
 app.use(cors());

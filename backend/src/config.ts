@@ -1,1 +1,1 @@
-export const  JWT_SECRET ="Saikat's secret key";
+export const JWT_SECRET = process.env.JWT
