@@ -6,7 +6,7 @@ import YoutubeIcon from "../icons/YoutubeIcon";
 import { motion } from "framer-motion";
 import axios from "axios";
 import { BACKEND_URL } from "../config";
-
+import { useContent } from "../hooks/useContent";
 interface CardProps {
   title: string;
   link: string;
@@ -15,6 +15,7 @@ interface CardProps {
 }
 
 function Cards({ title, link, type, id }: CardProps) {
+  const { refresh } = useContent();
   const handleDelete = async () => {
     await axios.delete(`${BACKEND_URL}/api/v1/content`, {
       data: {
@@ -26,6 +27,7 @@ function Cards({ title, link, type, id }: CardProps) {
 
     },
     )
+    
   }
 
   return (
@@ -47,10 +49,13 @@ function Cards({ title, link, type, id }: CardProps) {
             <GrayIcon icon={<ShareIcon />} />
           </a>
           <GrayIcon
+            
             onClick={() => {
               handleDelete();
+              refresh();
             }}
-            icon={<DeleteIcon />} />
+            icon={<DeleteIcon />}
+            className="cursor-pointer" />
         </div>
       </div>
       <div className="flex-grow flex justify-center">
@@ -80,8 +85,9 @@ function Cards({ title, link, type, id }: CardProps) {
   );
 }
 
-function GrayIcon({ icon, onClick }: { icon: ReactElement, onClick?: () => void }) {
-  return <div onClick={onClick} className="text-gray-500 pr-2.5">{icon}</div>;
+function GrayIcon({ icon, onClick , className }: { icon: ReactElement, onClick?: () => void , className?: string }) {
+  const classname = "text-gray-500 pr-2.5 " + className;
+  return <div  onClick={onClick} className={classname}>{icon}</div>;
 }
 
 export default Cards;
