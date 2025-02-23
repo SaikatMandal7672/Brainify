@@ -9,7 +9,7 @@ import { BACKEND_URL } from "../config";
 const Signup: React.FC = () => {
   const navigate = useNavigate();
 
-  const handleSignup = async (name: string, username: string, password: string) => {
+  const handleSignup = async (username: string, password: string, name?: string) => {
 
     try {
       await axios.post(BACKEND_URL + "/api/v1/user/signup",
