@@ -1,0 +1,1 @@
+export const  JWT_SECRET ="Saikat's secret key";
