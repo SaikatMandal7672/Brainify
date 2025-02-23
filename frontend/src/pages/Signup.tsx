@@ -12,7 +12,7 @@ const Signup: React.FC = () => {
   const handleSignup = async (username: string, password: string, name?: string) => {
 
     try {
-      
+
       await axios.post(BACKEND_URL + "/api/v1/user/signup",
         { name:name, username:username, password:password }, {
         headers: {
@@ -27,7 +27,8 @@ const Signup: React.FC = () => {
       if (axios.isAxiosError(err) && err.response) {
         alert(err.response.data.message + " " +name + " " + username + " " + password);
       } else {
-        alert("An unknown error occurred");
+        const unknownError = err;
+        alert("An unknown error occurred: " + unknownError);
       }
       return;
     }
