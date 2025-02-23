@@ -16,7 +16,7 @@
       }
     ],
     "env": {
-      "MONGODB_URI": "@mongodb_uri",
+      "DATABAE_URL": "@database_url",
       "JWT_SECRET": "@jwt_secret"
     }
   }
