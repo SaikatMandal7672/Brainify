@@ -13,6 +13,11 @@
       {
         "src": "/(.*)",
         "dest": "src/index.ts"
+      },
+      
+      {
+        "src": "/(.*)",
+        "dest": "/index.html"
       }
     ]
   }

@@ -8,7 +8,7 @@ import { Loader2 } from "lucide-react";
 
 interface AuthFormProps {
   type: "login" | "signup";
-  onSubmit: ( username: string, password: string ,name?:string) => Promise<void>;
+  onSubmit: (username: string, password: string, name?: string) => Promise<void>;
 }
 
 export default function Authform({ type, onSubmit }: AuthFormProps) {
@@ -26,9 +26,9 @@ export default function Authform({ type, onSubmit }: AuthFormProps) {
     const name = formData.get("name") as string;
 
     try {
-      if(type === "signup")
-        await onSubmit(name, username, password);
-      else{
+      if (type === "signup")
+        await onSubmit(username, password, name);
+      else {
         await onSubmit(username, password);
       }
     } catch (err) {
@@ -47,7 +47,9 @@ export default function Authform({ type, onSubmit }: AuthFormProps) {
       <h2 className="text-3xl font-bold text-center mb-8">
         {type === "login" ? "Welcome back" : "Create your account"}
       </h2>
-
+      <div className="mb-4 p-4 text-sm rounded-lg bg-green-50 text-green-500">
+          Password must be at least 8 characters long, contain at least one uppercase letter , one lowercase letter, one number and one special character.
+        </div>
       {error && (
         <div className="mb-4 p-4 text-sm rounded-lg bg-red-50 text-red-500">
           {error}
@@ -67,6 +69,7 @@ export default function Authform({ type, onSubmit }: AuthFormProps) {
               id="name"
               name="name"
               type="text"
+              placeholder="abc"
               required
               className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#4642ff] focus:border-transparent transition-colors"
             />
@@ -84,6 +87,7 @@ export default function Authform({ type, onSubmit }: AuthFormProps) {
             id="email"
             name="email"
             type="email"
+            placeholder="abc@gmail.com"
             required
             className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#4642ff] focus:border-transparent transition-colors"
           />
@@ -97,6 +101,7 @@ export default function Authform({ type, onSubmit }: AuthFormProps) {
             Password
           </label>
           <input
+            placeholder="********"
             id="password"
             name="password"
             type="password"

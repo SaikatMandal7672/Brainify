@@ -13,7 +13,7 @@ const Signup: React.FC = () => {
 
     try {
       await axios.post(BACKEND_URL + "/api/v1/user/signup",
-        { name, username, password }, {
+        { name:name, username:username, password:password }, {
         headers: {
           "Content-Type": "application/json",
         }
