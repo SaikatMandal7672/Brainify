@@ -2,6 +2,7 @@
 import { animate, easeInOut, motion, useMotionTemplate, useMotionValue } from "framer-motion"
 import { Terminal } from "lucide-react"
 import { useEffect } from "react"
+import { Link } from "react-router-dom";
 
 const COLORS = [
   "#f72585", "#b5179e", "#7209b7", "#560bad", "#480ca8",
@@ -52,14 +53,13 @@ export default function HeroSection() {
           transition={{ duration: 0.5, delay: 0.2 }}
           className="flex flex-col sm:flex-row justify-center gap-4 mb-12"
         >
-          <a
-            href="/signup"
-            className="px-8 py-4 rounded-lg bg-[#4642ff] text-white hover:bg-[#5147E4] transition-colors text-lg font-semibold"
-          >
+          <Link to="/signup" className="px-8 py-4 rounded-lg bg-[#4642ff] text-white hover:bg-[#5147E4] transition-colors text-lg font-semibold">
             Get Started
-          </a>
+          </Link>
           <a
-            href="/docs"
+            href="https://github.com/SaikatMandal7672/Brainify"
+            target="_blank"
+            rel="noreferrer"
             className="px-8 py-4 rounded-lg border border-gray-200 hover:border-gray-300 transition-colors text-lg font-semibold"
           >
             Learn More
