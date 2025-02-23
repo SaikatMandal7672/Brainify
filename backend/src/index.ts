@@ -8,6 +8,8 @@ import { userMiddleware } from "./middleware";
 import { random } from "./utils";
 
 const JWT_SECRET = process.env.JWT_SECRET || "your-default-secret";
+console.log(JWT_SECRET);
+
 var app = express();
 app.use(express.json());
 app.use(cors());
@@ -28,19 +30,28 @@ app.post("/api/v1/user/signup", async (req, res) => {
 
     const existingUser = await User.findOne({ username: req.body.username });
 
-    if (existingUser) {
+
+    if (existingUser != null) {
+
+
         res.status(403).json({
             message: "User already exists",
+            existingUser
         });
         return;
     }
 
     try {
+        console.log(req.body);
+
         const user = await User.create({
             name: req.body.name,
             username: req.body.username,
             password: req.body.password,
         });
+
+        console.log("control reaches after user created");
+
         const userId = user._id;
 
         const token = jwt.sign({ userId }, JWT_SECRET);
@@ -50,8 +61,9 @@ app.post("/api/v1/user/signup", async (req, res) => {
         });
         return;
     } catch (err) {
+        const message = (err as Error).message;
         res.status(411).json({
-            message: "user already exists",
+            message,
         });
     }
 });

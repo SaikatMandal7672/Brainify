@@ -24,7 +24,7 @@ const Signup: React.FC = () => {
       navigate("/login");
     } catch (err) {
       if (axios.isAxiosError(err) && err.response) {
-        alert(err.response.data.message + name + " " + username + " " + password);
+        alert(err.response.data.message + " " +name + " " + username + " " + password);
       } else {
         alert("An unknown error occurred");
       }
