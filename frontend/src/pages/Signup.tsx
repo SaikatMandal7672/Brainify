@@ -12,6 +12,7 @@ const Signup: React.FC = () => {
   const handleSignup = async (username: string, password: string, name?: string) => {
 
     try {
+      
       await axios.post(BACKEND_URL + "/api/v1/user/signup",
         { name:name, username:username, password:password }, {
         headers: {
