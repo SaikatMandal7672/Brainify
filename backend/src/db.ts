@@ -1,6 +1,6 @@
 import mongoose, { Schema } from 'mongoose'
 import { object, string } from 'zod';
-mongoose.connect('mongodb+srv://saikatmandal290103:7WAERKXfIa9AW5zO@cluster0.wgb7u.mongodb.net/brainly')
+mongoose.connect('DB_URL')
   .then(() => console.log('MongoDB connected'))
   .catch(err => console.error('MongoDB connection error:', err));
 
