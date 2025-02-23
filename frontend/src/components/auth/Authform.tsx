@@ -47,9 +47,9 @@ export default function Authform({ type, onSubmit }: AuthFormProps) {
       <h2 className="text-3xl font-bold text-center mb-8">
         {type === "login" ? "Welcome back" : "Create your account"}
       </h2>
-      <div className="mb-4 p-4 text-sm rounded-lg bg-green-50 text-green-500">
+      {type == "signup" && <div className="mb-4 p-4 text-sm rounded-lg bg-green-50 text-green-500">
           Password must be at least 8 characters long, contain at least one uppercase letter , one lowercase letter, one number and one special character.
-        </div>
+        </div>}
       {error && (
         <div className="mb-4 p-4 text-sm rounded-lg bg-red-50 text-red-500">
           {error}
