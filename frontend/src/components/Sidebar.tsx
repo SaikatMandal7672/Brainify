@@ -1,3 +1,4 @@
+import { Instagram } from "lucide-react";
 import BrainIcon from "../icons/BrainIcon";
 import TwitterIcon from "../icons/TwitterIcon";
 import YoutubeIcon from "../icons/YoutubeIcon";
@@ -16,6 +17,7 @@ import { motion } from "framer-motion";
             <ul className="mt-4">
                 <li className="p-4 hover:bg-gray-100 cursor-pointer transition-all duration-300 "><SidebarItems title="Tweets" icon={<TwitterIcon/>}/></li>
                 <li className="p-4 hover:bg-gray-100 cursor-pointer transition-all duration-300 "><SidebarItems title="YouTube" icon={<YoutubeIcon/>}/></li>
+                <li className="p-4 hover:bg-gray-100 cursor-pointer transition-all duration-300 "><SidebarItems title="Instagram" icon={<Instagram/>}/></li>
             </ul>
         </motion.div>
     );

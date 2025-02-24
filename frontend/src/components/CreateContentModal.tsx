@@ -4,11 +4,12 @@ import { Button } from "./Button";
 import axios from "axios";
 import { BACKEND_URL } from "../config";
 import { useState } from "react";
-import {motion } from "framer-motion";
+import { motion } from "framer-motion";
 
 enum ContentType {
   Youtube = "youtube",
   Twitter = "twitter",
+  Instagram = "instagram",
 }
 
 function CreateContentModal({ open, onClose, }: { open: boolean; onClose: () => void; }) {
@@ -34,21 +35,21 @@ function CreateContentModal({ open, onClose, }: { open: boolean; onClose: () => 
       {open && (
         <div>
           <motion.div
-            initial= {{opacity:0}}
-            animate={{opacity:.5}}
-            exit={{opacity:0}}
-            transition={{duration:0.2}}
+            initial={{ opacity: 0 }}
+            animate={{ opacity: .5 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: 0.2 }}
             className="bg-gray-200 left-0 top-0 fixed w-full h-full  backdrop-filter backdrop-blur-lg flex justify-center items-center"
 
           >
 
           </motion.div>
           <motion.div
-            initial= {{opacity:0}}
-            animate={{opacity:1}}
-            exit={{opacity:0}}
-            transition={{duration:.3}}
-           className=" w-full h-full left-0 top-0 fixed flex justify-center items-center" onClick={onClose}>
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: .3 }}
+            className=" w-full h-full left-0 top-0 fixed flex justify-center items-center" onClick={onClose}>
             <span
               className=" bg-purple-bg text-amber-50 p-4 rounded-md flex flex-col w-80 "
               onClick={(e) => {
@@ -73,6 +74,8 @@ function CreateContentModal({ open, onClose, }: { open: boolean; onClose: () => 
                 <Button
                   onClick={() => setType(ContentType.Twitter)}
                   variant={type === ContentType.Twitter ? "primary" : "secondary"} innerText="Twitter" />
+                <Button
+                  onClick={() => setType(ContentType.Instagram)} variant={type === ContentType.Instagram ? "primary" : "secondary"} innerText="Instagram" />
               </div>
 
               <div className="flex justify-center  items-center pt-5 transition-all duration-500 ease-in-out">
