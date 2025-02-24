@@ -235,8 +235,6 @@ app.get("/api/v1/brain/:sharelink", async (req, res) => {
         content
     })
 })
-app.all("*", (req, res) => {
-  res.status(200).send("Handled by catch-all route");
-});
+
 
 app.listen(3000);
