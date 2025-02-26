@@ -26,8 +26,8 @@ export const Button = ({
       className={variantClass[variant] + " " + defaultStyle + " " + border}
       onClick={onClick}
     >
-      {startIcon && <div className="pr-2">{startIcon}</div>}
-      {innerText}
+      {startIcon && <div className="sm:pr-2">{startIcon}</div>}
+      <div className="hidden sm:flex">{innerText}</div>
     </button>
   );
 };

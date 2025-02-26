@@ -1,4 +1,4 @@
-import { ReactElement } from "react";
+import { ReactElement, useEffect, useState } from "react";
 import ShareIcon from "../icons/ShareIcon";
 import DeleteIcon from "../icons/DeleteIcon";
 import TwitterIcon from "../icons/TwitterIcon";
@@ -20,6 +20,16 @@ interface CardProps {
 
 function Cards({ title, link, type, id, page }: CardProps) {
   const { refresh } = useContent();
+  const [width, setWidth] = useState(window.innerWidth);
+
+  useEffect(() => {
+    const handleResize = () => setWidth(window.innerWidth);
+    
+    window.addEventListener("resize", handleResize);
+    
+    return () => window.removeEventListener("resize", handleResize);
+    
+  }, []);
 
 
   const handleDelete = async () => {
@@ -42,9 +52,9 @@ function Cards({ title, link, type, id, page }: CardProps) {
       whileInView={{ y: 0, opacity: 1 }}
       transition={{ duration: 0.5, delay: 0.1 }}
       viewport={{ once: true }}
-      className="p-4 bg-white rounded-md border-gray-200 border max-w-auto shadow-md flex flex-col h-auto self-starts"
+      className="sm:p-4 p-2  bg-white rounded-md border-gray-200 border max-w-auto shadow-md flex flex-col h-auto self-start"
     >
-      <div className="flex justify-between mb-4">
+      <div className="flex justify-between sm:mb-4 mb-2">
         <div className="flex items-center gap-2 font-semibold">
           {type === "twitter" && <GrayIcon icon={<TwitterIcon />} />}
           {type === "youtube" && <GrayIcon icon={<YoutubeIcon />} />}
@@ -68,26 +78,23 @@ function Cards({ title, link, type, id, page }: CardProps) {
 
         </div>
       </div>
-      <div className=" flex-grow flex justify-center">
+      <div className="flex-grow flex justify-center ">
         {type === "youtube" && (
-          <div className="w-full h-auto flex justify-center">
-            {/* <iframe className="w-full h-auto "
-              // src={`https://www.youtube.com/embed/${new URL(link).searchParams.get("v")}`}
-              src={getYouTubeEmbedUrl(link)}
-              title={title}
-              frameBorder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerPolicy="strict-origin-when-cross-origin" allowFullScreen></iframe> */}
-
-
+          (width <400 &&
+            
+            <YouTubeEmbed url={link} height={150} width={190} />
+          ) ||
+          (width > 400 && 
             <YouTubeEmbed url={link} height={200} width={300} />
-          </div>
+           )
 
         )}
 
         {type === "twitter" && (
-          <XEmbed url={link} width={300} />
+          <XEmbed url={link} className="sm:w-[300px] w-[200px]" />
         )}
         {type === "instagram" &&
-          <InstagramEmbed url={link} width={328} />
+          <InstagramEmbed url={link} className="sm:w-[350px] w-[200px]" />
         }
       </div>
     </motion.div>

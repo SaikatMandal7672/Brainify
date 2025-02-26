@@ -50,7 +50,7 @@ function TopContent({ onClick }: { onClick: () => void }) {
       animate={{ y: 0, opacity: 1 }}
       transition={{ duration: 0.2 }}
       className="flex justify-between mb-9">
-      <h2 className="text-3xl font-bold">All Notes</h2>
+      <h2 className="sm:text-3xl text-xl font-bold">All Notes</h2>
       <div className=" flex justify-end gap-2">
         <Button
           onClick={onClick}

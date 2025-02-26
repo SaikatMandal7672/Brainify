@@ -23,7 +23,7 @@ function Dashboard() {
     <>
       <div className=" bg-gray-200 h-full">
         <Sidebar />
-        <div className="p-5 min-h-screen ml-64">
+        <div className="p-5 min-h-screen ml-10 sm:ml-52">
           <TopContent onClick={() => setOpenModal(true)} />
           <div className="flex gap-4">
 
