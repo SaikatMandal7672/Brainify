@@ -27,7 +27,7 @@ function TopContent({ onClick }: { onClick: () => void }) {
     // navigate(`/share/${response.data.hash} `);
     await navigator.clipboard.writeText(shareUrl);
 
-    alert("Share link : " + shareUrl);
+    alert("Link copied to clipboard : " + shareUrl);
 
 
   }
