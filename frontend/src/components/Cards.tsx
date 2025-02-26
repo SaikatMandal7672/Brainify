@@ -91,10 +91,10 @@ function Cards({ title, link, type, id, page }: CardProps) {
         )}
 
         {type === "twitter" && (
-          <XEmbed url={link} className="sm:w-[300px] w-[200px]" />
+          <XEmbed url={link} className="sm:w-[300px] w-[250px]" />
         )}
         {type === "instagram" &&
-          <InstagramEmbed url={link} className="sm:w-[350px] w-[200px]" />
+          <InstagramEmbed url={link} className="sm:w-[350px] w-[250px]" />
         }
       </div>
     </motion.div>
