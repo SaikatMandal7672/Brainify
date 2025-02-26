@@ -3,7 +3,7 @@ import ShareIcon from "../icons/ShareIcon";
 import { Button } from "./Button";
 import { motion } from "framer-motion";
 import axios from "axios";
-import { BACKEND_URL } from "../config";
+import { BACKEND_URL, FRONTEND_URL } from "../config";
 
 import { useState } from "react";
 
@@ -22,7 +22,7 @@ function TopContent({ onClick }: { onClick: () => void }) {
       }
     })
 
-    const shareUrl = `${BACKEND_URL}/share/${response.data.hash}`;
+    const shareUrl = `${FRONTEND_URL}/share/${response.data.hash}`;
 
     // navigate(`/share/${response.data.hash} `);
     await navigator.clipboard.writeText(shareUrl);
