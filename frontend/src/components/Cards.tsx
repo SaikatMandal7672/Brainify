@@ -15,9 +15,10 @@ interface CardProps {
   link: string;
   type: "youtube" | "twitter" | "instagram";
   id: string;
+  page?: string;
 }
 
-function Cards({ title, link, type, id }: CardProps) {
+function Cards({ title, link, type, id, page }: CardProps) {
   const { refresh } = useContent();
 
 
@@ -54,14 +55,17 @@ function Cards({ title, link, type, id }: CardProps) {
           <a href={link} target="_blank" rel="noopener noreferrer">
             <GrayIcon icon={<ShareIcon />} />
           </a>
-          <GrayIcon
+          {!page &&
+            <GrayIcon
 
-            onClick={() => {
-              handleDelete();
-              refresh();
-            }}
-            icon={<DeleteIcon />}
-            className="cursor-pointer" />
+              onClick={() => {
+                handleDelete();
+                refresh();
+              }}
+              icon={<DeleteIcon />}
+              className="cursor-pointer" />
+          }
+
         </div>
       </div>
       <div className=" flex-grow flex justify-center">
