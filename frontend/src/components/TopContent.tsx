@@ -22,7 +22,7 @@ function TopContent({ onClick }: { onClick: () => void }) {
       }
     })
 
-    const shareUrl = `http://localhost:5173/share/${response.data.hash}`;
+    const shareUrl = `${BACKEND_URL}/share/${response.data.hash}`;
 
     // navigate(`/share/${response.data.hash} `);
     await navigator.clipboard.writeText(shareUrl);
