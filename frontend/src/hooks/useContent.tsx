@@ -7,6 +7,7 @@ export const useContent = () => {
     const [content , setContent] = useState([])
 
     function refresh ()  {
+        
         axios.get(`${BACKEND_URL}/api/v1/content`,{
             headers: {
                 "Authorization":localStorage.getItem("token"),
