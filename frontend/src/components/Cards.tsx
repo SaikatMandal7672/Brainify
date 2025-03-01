@@ -20,16 +20,16 @@ interface CardProps {
 
 function Cards({ title, link, type, id, page }: CardProps) {
   const { refresh } = useContent();
-  const [width, setWidth] = useState(window.innerWidth);
+  const [widthWindow, setWidthWindow] = useState(window.innerWidth);
 
   useEffect(() => {
-    const handleResize = () => setWidth(window.innerWidth);
+    const handleResize = () => setWidthWindow(window.innerWidth);
     
     window.addEventListener("resize", handleResize);
-    
+    console.log(typeof(widthWindow));
     return () => window.removeEventListener("resize", handleResize);
     
-  }, []);
+  }, [widthWindow]);
 
 
   const handleDelete = async () => {
@@ -52,7 +52,7 @@ function Cards({ title, link, type, id, page }: CardProps) {
       whileInView={{ y: 0, opacity: 1 }}
       transition={{ duration: 0.5, delay: 0.1 }}
       viewport={{ once: true }}
-      className="sm:p-4 p-2  bg-white rounded-md border-gray-200 border max-w-auto shadow-md flex flex-col h-auto self-start"
+      className="sm:p-4 p-2  bg-white rounded-md border-gray-200 border max-w-auto shadow-lg flex flex-col"
     >
       <div className="flex justify-between sm:mb-4 mb-2">
         <div className="flex items-center gap-2 font-semibold">
@@ -80,12 +80,16 @@ function Cards({ title, link, type, id, page }: CardProps) {
       </div>
       <div className="flex-grow flex justify-center ">
         {type === "youtube" && (
-          (width <400 &&
+          (widthWindow>780 &&
             
-            <YouTubeEmbed url={link} height={150} width={190} />
-          ) ||
-          (width > 400 && 
-            <YouTubeEmbed url={link} height={200} width={300} />
+            <YouTubeEmbed url={link} height={widthWindow/5} width={widthWindow/4}  className="row-span-2" />
+          )
+           ||
+          (widthWindow > 400 && 
+            <YouTubeEmbed url={link} height={widthWindow*4/10} width={widthWindow*2/3} className="row-span-2"/>
+           )||
+           (widthWindow && 
+            <YouTubeEmbed url={link} height={150} width={250} className="row-span-2"/>
            )
 
         )}
@@ -94,7 +98,7 @@ function Cards({ title, link, type, id, page }: CardProps) {
           <XEmbed url={link} className="sm:w-[300px] w-[250px]" />
         )}
         {type === "instagram" &&
-          <InstagramEmbed url={link} className="sm:w-[350px] w-[250px]" />
+          <InstagramEmbed url={link}  />
         }
       </div>
     </motion.div>
