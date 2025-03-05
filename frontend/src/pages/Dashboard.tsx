@@ -4,13 +4,22 @@ import CreateContentModal from "../components/CreateContentModal";
 import TopContent from "../components/TopContent";
 import Sidebar from "../components/Sidebar";
 import { useContent } from "../hooks/useContent";
+import { useNavigate } from "react-router-dom";
 
 
 
 function Dashboard() {
   const [openModal, setOpenModal] = useState(false);
   const { content, refresh } = useContent();
-  
+  const token = localStorage.getItem("token");
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    if (!token) {
+      navigate("/login");
+    }
+  }, [token, navigate]);
+
 
   useEffect(() => {
     refresh();
@@ -32,6 +41,7 @@ function Dashboard() {
                 content.map(({ title, link, type, _id }) => {
                   return (
                     <Cards
+                      
                       link={link}
                       type={type}
                       title={title}

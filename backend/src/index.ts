@@ -236,5 +236,25 @@ app.get("/api/v1/brain/:sharelink", async (req, res) => {
     })
 })
 
+app.post("/api/v1/existinghash", userMiddleware , async (req , res)=>{
+    const userId = req.userId ;
+    const response = await Link.find({
+        userId:userId
+    })
+    console.log(response);
+    
+    if(response){
+        res.json({
+            success :true,
+        })
+        return ;
+    }
+    res.json({
+        success:false,
+    })
+    return ;
+
+})
+
 
 app.listen(3000);
